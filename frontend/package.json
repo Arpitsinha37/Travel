@@ -10,16 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "three": "^0.160.0",
-    "@react-three/fiber": "^8.15.12",
     "@react-three/drei": "^9.96.1",
-    "gsap": "^3.12.5",
+    "@react-three/fiber": "^8.15.12",
     "@studio-freight/lenis": "^1.0.33",
     "axios": "^1.6.5",
+    "date-fns": "^4.1.0",
+    "firebase": "^12.8.0",
+    "gsap": "^3.12.5",
+    "lucide-react": "^0.309.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
-    "lucide-react": "^0.309.0"
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
