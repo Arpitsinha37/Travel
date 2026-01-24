@@ -105,20 +105,62 @@ const CustomCalendar = ({ selectedDate, onChange }) => {
         return <div>{rows}</div>;
     };
 
-    return (
-        <div className="relative w-full md:w-64 group" ref={calendarRef}>
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-rose-500 transition-colors pointer-events-none">
-                <CalendarIcon className="w-5 h-5" />
-            </div>
+    const handleDateSelect = (date) => {
+        onChange(date);
+        setIsOpen(false);
+    };
 
+    const selectToday = (e) => {
+        e.stopPropagation();
+        handleDateSelect(today);
+    };
+
+    const selectTomorrow = (e) => {
+        e.stopPropagation();
+        handleDateSelect(addDays(today, 1));
+    };
+
+    return (
+        <div className="relative w-full h-full" ref={calendarRef}>
             {/* Input Trigger */}
             <div
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full h-16 pl-14 pr-4 rounded-2xl bg-slate-50/50 md:bg-transparent hover:bg-slate-50 focus-within:bg-white flex items-center cursor-pointer border border-transparent focus-within:border-rose-100 focus-within:ring-4 focus-within:ring-rose-50 transition-all"
+                className="w-full h-full bg-transparent flex flex-col justify-center cursor-pointer focus:outline-none pl-12 pr-4 relative group"
             >
-                <span className={`text-lg font-semibold ${selectedDate ? 'text-slate-700' : 'text-slate-400'}`}>
-                    {selectedDate ? format(selectedDate, 'dd MMM yyyy') : 'Date of Journey'}
-                </span>
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-hover:text-nepal-red transition-colors">
+                    <CalendarIcon className="w-6 h-6" />
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <div className="flex flex-col items-start">
+                        <span className="text-xs font-medium text-slate-500 flex items-center gap-1">
+                            Date of Journey
+                            <span className="md:hidden lg:inline text-[10px] opacity-70">
+                                {selectedDate && isSameDay(selectedDate, today) ? "(Today)" : ""}
+                                {selectedDate && isSameDay(selectedDate, addDays(today, 1)) ? "(Tomorrow)" : ""}
+                            </span>
+                        </span>
+                        <span className="text-xl font-bold text-slate-800">
+                            {selectedDate ? format(selectedDate, 'dd MMM yyyy') : 'Onward Date'}
+                        </span>
+                    </div>
+
+                    {/* Quick Select Chips (Desktop Only) */}
+                    <div className="hidden xl:flex items-center gap-2 ml-4">
+                        <button
+                            onClick={selectToday}
+                            className={`px-3 py-1 rounded-full text-xs font-semibold max-w-[80px] truncate transition-colors ${selectedDate && isSameDay(selectedDate, today) ? 'bg-nepal-red text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        >
+                            Today
+                        </button>
+                        <button
+                            onClick={selectTomorrow}
+                            className={`px-3 py-1 rounded-full text-xs font-semibold max-w-[80px] truncate transition-colors ${selectedDate && isSameDay(selectedDate, addDays(today, 1)) ? 'bg-nepal-red text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        >
+                            Tomorrow
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {/* Calendar Popup */}

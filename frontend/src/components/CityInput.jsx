@@ -49,9 +49,10 @@ const CityInput = ({ label, placeholder, value, onChange, excludeCity }) => {
     const validCities = filteredCities.filter(city => checkRouteValidity(city));
 
     return (
-        <div className="relative flex-1 group w-full" ref={wrapperRef}>
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-rose-500 transition-colors pointer-events-none">
-                <MapPin className="w-5 h-5" />
+        <div className="relative w-full h-full group" ref={wrapperRef}>
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-hover:text-nepal-red transition-colors">
+                {/* Bus Icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 6v6" /><path d="M15 6v6" /><path d="M2 12h19.6" /><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" /><circle cx="7" cy="18" r="2" /><path d="M9 18h5" /><circle cx="16" cy="18" r="2" /></svg>
             </div>
 
             <input
@@ -65,13 +66,22 @@ const CityInput = ({ label, placeholder, value, onChange, excludeCity }) => {
                     }
                 }}
                 onFocus={() => setIsOpen(true)}
-                placeholder={placeholder}
-                className="w-full h-16 pl-14 pr-4 rounded-2xl bg-slate-50/50 md:bg-transparent hover:bg-slate-50 focus:bg-white focus:outline-none text-lg font-semibold text-slate-700 placeholder:text-slate-400 transition-all border border-transparent focus:border-rose-100 focus:ring-4 focus:ring-rose-50 cursor-pointer"
+                placeholder=""
+                className="w-full h-full bg-transparent focus:outline-none text-xl font-bold text-slate-800 cursor-pointer pl-12 pr-4 pt-4"
             />
+            {/* Label: Acts as placeholder when empty, moves up when active */}
+            <label className={`absolute left-12 transition-all duration-200 pointer-events-none truncate max-w-[120px]
+                ${searchTerm || isOpen
+                    ? 'top-2 text-xs font-bold text-slate-500 uppercase tracking-wider'
+                    : 'top-1/2 -translate-y-1/2 text-xl font-normal text-slate-500'
+                }`}
+            >
+                {placeholder}
+            </label>
 
             {/* Dropdown */}
             {isOpen && validCities.length > 0 && (
-                <div className="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50 max-h-60 overflow-y-auto">
+                <div className="absolute top-full left-0 w-full min-w-[200px] mt-2 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50 max-h-60 overflow-y-auto">
                     {validCities.map((city) => (
                         <div
                             key={city}

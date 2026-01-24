@@ -6,6 +6,10 @@ import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import Booking from './pages/Booking';
 import Account from './pages/Account';
+import Testimonials from './pages/Testimonials';
+import About from './pages/About';
+import Location from './pages/Location';
+import Rentals from './pages/Rentals';
 import { useLenis } from './hooks/useLenis';
 
 function AppContent() {
@@ -20,6 +24,10 @@ function AppContent() {
                     <Route path="/search" element={<SearchResults />} />
                     <Route path="/booking/:tripId" element={<Booking />} />
                     <Route path="/account" element={<Account />} />
+                    <Route path="/testimonials" element={<Testimonials />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/location" element={<Location />} />
+                    <Route path="/rentals" element={<Rentals />} />
                 </Routes>
             </main>
             <Footer />

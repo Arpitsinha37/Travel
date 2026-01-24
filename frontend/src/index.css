@@ -6,9 +6,26 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #f8fafc;
-  color: #0f172a;
-  font-family: 'Inter', sans-serif;
+  background-color: #fafbfb;
+  /* Very light cool gray */
+  color: #1a1a1a;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nepali-pattern-bg {
+  background-image: radial-gradient(#DC143C 0.5px, transparent 0.5px), radial-gradient(#DC143C 0.5px, #fafbfb 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.03;
+}
+
+/* Abstract Cultural Silhouette (Mountains/Temples) */
+.cultural-skyline {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23DC143C" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path><path fill="%23003893" fill-opacity="0.05" d="M0,160L48,176C96,192,192,224,288,229.3C384,235,480,213,576,186.7C672,160,768,128,864,138.7C960,149,1056,203,1152,213.3C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
 }
 
 canvas {
@@ -25,4 +42,32 @@ canvas {
 #root {
   position: relative;
   z-index: 1;
+
+
+  /* Toggle Style */
+  .toggle-checkbox:checked {
+    right: 0;
+    border-color: #DC143C;
+  }
+
+  .toggle-checkbox:checked+.toggle-label {
+    background-color: #DC143C;
+  }
+
+  .toggle-checkbox {
+    right: auto;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .toggle-checkbox:checked {
+    right: 0;
+    left: auto;
+  }
+
+  .toggle-label {
+    width: 3rem;
+    /* Adjusted for w-12 container */
+    height: 1.5rem;
+  }
 }
